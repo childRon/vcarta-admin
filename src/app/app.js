@@ -7,6 +7,7 @@
       "mobile-angular-ui",
       "smart-table",
       "lrDragNDrop",
+      "ngCookies",
       jcs.modules.core.name, 
       jcs.modules.auth.name,
       jcs.modules.admin.name, 

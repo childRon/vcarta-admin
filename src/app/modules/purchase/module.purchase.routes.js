@@ -8,8 +8,7 @@
                 controller: jcs.modules.purchase.controllers.purchase,
                 templateUrl: 'src/app/modules/purchase/purchase.tmpl.html',
                 access: {
-                    loginRequired: true,
-                    permissions: ['Admin']
+                    loginRequired: true
                 }
             });
         }]);
