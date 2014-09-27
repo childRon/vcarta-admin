@@ -1,2 +1,4 @@
-vcarta-admin
+
 ============
+VartaCarta: личный кабинет
+angular.js + node.js
