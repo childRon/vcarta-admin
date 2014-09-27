@@ -1,0 +1,30 @@
+1. session.json
+curl -X POST -d "type:card,login:2500650006387,password:1111" http://cabinet.vartacarta.by/api2/session.json
+
+2. look-session.json
+curl http://cabinet.vartacarta.by/api2/session.json?sid:0f71d788b93b03d797a6
+
+3. close-session.json
+curl -X DELETE -d "sid:0f71d788b93b03d797a6" http://cabinet.vartacarta.by/api2/session.json
+
+4. profile.json
+curl http://cabinet.vartacarta.by/api2/session/user.json?sid:e1d5dad2b294a5f1c433
+
+5. prodile-update.json ?????
+ curl -X PUT -d "{"sid":"e1d5dad2b294a5f1c433","lastname":"Витя"}" http://cabinet.vartacarta.by/api2/session/user.json
+
+6. purchase-list.json (список покупок за последнию неделю (100 штук лимит))
+ curl http://cabinet.vartacarta.by/api2/purchases.json?sid:e1d5dad2b294a5f1c433
+
+7. purchase-filter.json (Список с 10 по 12 покупку на карте с 7 июля 2014 года по 5 сентября 2014)
+ curl http://cabinet.vartacarta.by/api2/purchases.json?sid:e1d5dad2b294a5f1c433,date_from:2014-07-01,date_to:2014-09-5,offset:10,limit:2
+
+8. bonus-accounts.json
+ curl http://cabinet.vartacarta.by/api2/accounts.json?sid:e1d5dad2b294a5f1c433
+
+9. bonus-account.json
+curl http://cabinet.vartacarta.by/api2/accounts/1006466.json?sid:e1d5dad2b294a5f1c433
+
+10. bonus-exchange.json  (to collect json )?? 
+curl -X PUT -d "sid:e1d5dad2b294a5f1c433,sum:2500,target_card:140000005756"http://cabinet.vartacarta.by/api2/accounts/1006466/accounts/1006466.json
+
