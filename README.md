@@ -17,6 +17,6 @@ Node provides the RESTful API. Angular provides the frontend and accesses the AP
 
 ## Tutorial Series
 
-This repo corresponds to the VartaCarta account on [scotch.io](http://vartacarta.by)
+This repo corresponds to the VartaCarta account on [vartacarta.by](http://vartacarta.by)
 
 Enjoy!!!
