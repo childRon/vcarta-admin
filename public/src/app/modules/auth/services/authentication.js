@@ -8,7 +8,8 @@
         '$window',
         '$cookies',
         '$http',
-        function ($q, $timeout, eventbus, $window, $cookies, $http) {
+        jcs.modules.core.factory.httpTransformer,
+        function ($q, $timeout, eventbus, $window, $cookies, $http, transfromer) {
             var currentUser,
                 createUser = function (name, permissions) {
                     return {
@@ -18,8 +19,22 @@
                 },
                 login = function (cardId, password) {
                     var deferred = $q.defer();
-                    $http.get('json/session.json').
-                        success(function (data, status, headers, config) {
+                    // By default, the $http service will transform the outgoing request by
+                    // serializing the data as JSON and then posting it with the content-
+                    // type, "application/json". When we want to post the value as a FORM
+                    // post, we need to change the serialization algorithm and post the data
+                    // with the content-type, "application/x-www-form-urlencoded".
+//                    var loginDataString = "type:card,login:2500650000019,password:3157";
+                    var loginDataString = 'type:card,login:{0},password:{1}'.format(cardId, password);
+                    var request = $http({
+                        method: "post",
+                        url: "/api2/session.json",
+                        transformRequest: transfromer,
+                        data: {
+                            body: loginDataString
+                        }
+                    });
+                    request.success(function (data, status, headers, config) {
                             var sid = data.sid;
                             if (sid) {
                                 $cookies.token = sid;

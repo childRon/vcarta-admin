@@ -11,8 +11,13 @@
         },
         routes: {
             home: '/'
+        },
+        factory:{
+            httpTransformer: "httpTransformer"
+        },
+        filter:{
+            format: 'format'
         }
-
     };
 
     angular.module(jcs.modules.core.name, []);
