@@ -22,6 +22,7 @@
       "lrDragNDrop",
       "ngCookies",
       "ui.format",
+      "720kb.datepicker",
       jcs.modules.core.name, 
       jcs.modules.auth.name,
       jcs.modules.admin.name, 

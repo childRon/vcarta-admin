@@ -11,6 +11,9 @@
         },
         factory: {
             json: 'purchaseJsonFactory'
+        },
+        directive: {
+            dateInput: "dateInput"
         }
     };
 
