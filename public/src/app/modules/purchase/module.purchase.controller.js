@@ -2,8 +2,8 @@
     'use strict';
 
     angular.module(jcs.modules.purchase.name).controller(jcs.modules.purchase.controllers.purchase,
-        ['$http', '$scope','eventbus', '$timeout', jcs.modules.purchase.factory.json, '$filter',
-            function ($http, $scope, eventbus, $timeout, purchaseJsonFactory, $filter) {
+        ['$http', '$scope','$rootScope','eventbus', '$timeout', jcs.modules.purchase.factory.json, '$filter',
+            function ($http, $scope,$rootScope, eventbus, $timeout, purchaseJsonFactory, $filter) {
 
                 var startDateObj = new Date();
                 var endDateObj = new Date(new Date().setMonth(startDateObj.getMonth() - 1));
@@ -40,7 +40,7 @@
 
                     var startDateValueReq = $filter('date')(new Date(startDateValue), requestPattern);
                     var endDateValueReq = $filter('date')(new Date(endDateValue), requestPattern);
-
+                    $rootScope.loading = true;
                     purchaseJsonFactory.getPurchaseStuff(startDateValueReq, endDateValueReq).then(function (response) {
                         var data = response.data;
                         if(!data.total){
@@ -51,6 +51,7 @@
 
                         $scope.rowCollection = data.purchases;
                         $scope.displayedCollection = [].concat($scope.rowCollection);
+                        $rootScope.loading = false;
                         return data.purchases;
                     }, function (error) {
                         console.error(error);

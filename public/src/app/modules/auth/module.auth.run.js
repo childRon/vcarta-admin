@@ -10,7 +10,7 @@ angular.module(jcs.modules.auth.name).run([
             loginRedirectUrl;
         $rootScope.$on('$routeChangeStart', function (event, next) {
             var authorised;
-            if (routeChangeRequiredAfterLogin && next.originalPath !== jcs.modules.auth.routes.login) {
+           if (routeChangeRequiredAfterLogin && next.originalPath !== jcs.modules.auth.routes.login) {
                 routeChangeRequiredAfterLogin = false;
                 $location.path(loginRedirectUrl).replace();
             } else if (next.access !== undefined) {
