@@ -4,8 +4,43 @@
 
 <div class="scrollable" ng-controller="ProfileController">
   <div class="scrollable-content">
+      <div class="container-fluid section section-break">
 
+          <div class="btn-group justified">
+              <span class="">Логин</span>
+              <span>{{profile.card}}</span>
+          </div>
+          <div class="btn-group justified">
+              <span class="">Уровень активности</span>
+              <span>{{profile.discount_level}}</span>
+          </div>
+          <div class="btn-group justified">
+              <span class="">Имя</span>
+              <span>{{profile.firstname}}</span>
+          </div>
+          <div class="btn-group justified">
+              <span class="">Фамилия</span>
+              <span>{{profile.lastname}}</span>
+          </div>
+          <div class="btn-group justified">
+              <span class="">Отчество</span>
+              <span>{{profile.patronymic}}</span>
+          </div>
+          <div class="btn-group justified">
+              <span class="">Телефон</span>
+              <span>{{profile.mobile}}</span>
+          </div>
+          <div class="btn-group justified">
+              <span class="">Электронная почта</span>
+              <span>{{profile.email}}</span>
+          </div>
+          <div class="btn-group justified">
+              <span class="">Город</span>
+              <span>Минск</span>
+          </div>
 
-	<div ng-show="isLoading" class="loading-indicator"></div>
+        </div>
+
+          <div ng-show="isLoading" class="loading-indicator"></div>
   </div>
 </div>

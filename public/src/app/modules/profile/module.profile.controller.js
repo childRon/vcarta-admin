@@ -7,8 +7,10 @@
 
                 $rootScope.loading = true;
                 profileFactory.getProfile().then(function (response) {
+                    var data = response.data;
+                    $scope.profile = data;
                     $rootScope.loading = false;
-                    return response;
+                    return data;
                 }, function (error) {
                     console.error(error);
                 });
