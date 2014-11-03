@@ -11,11 +11,17 @@
 			<thead>
 				<tr>
 					<th ng-repeat="col in columnNames">{{col}}</th>
+                    <th></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr ng-repeat="row in displayedCollection">
 					<td ng-repeat="col in columns">{{row[col]}}</td>
+                    <td>
+                        <div ng-click="locateToSharePage({{row['id']}})" class="btn btn-navbar">
+                            <i class="fa fa-share-square-o"></i> Передать
+                        </div>
+                    </td>
 				</tr>
 			</tbody>
 		</table>

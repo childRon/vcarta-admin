@@ -4,10 +4,12 @@
     jcs.modules.bonus = {
         name: 'bonus',
         controllers: {
-            bonus: 'BonusController'
+            bonus: 'BonusController',
+            bonus_share: 'BonusShareController'
         },
         routes: {
-            bonus: '/bonus'
+            bonus: '/bonus',
+            bonus_one:'/bonus/:id'
         },
         factory: {
             json: 'bonusJsonFactory'

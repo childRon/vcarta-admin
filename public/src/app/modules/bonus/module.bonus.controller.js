@@ -2,8 +2,8 @@
     'use strict';
 
     angular.module(jcs.modules.bonus.name).controller(jcs.modules.bonus.controllers.bonus,
-        ['$http', '$scope','$rootScope', 'eventbus', '$filter', jcs.modules.bonus.factory.json,
-            function ($http, $scope,$rootScope, eventbus,  $filter, bonusFactory) {
+        ['$http', '$location', '$scope','$rootScope', 'eventbus', '$filter', jcs.modules.bonus.factory.json,
+            function ($http, $location, $scope, $rootScope, eventbus, $filter, bonusFactory) {
 
                 var pattern = 'mediumDate';
 
@@ -30,9 +30,48 @@
                     console.error(error);
                 });
 
+                $scope.locateToSharePage = function(id){
+                    if(id == undefined){
+                        return;
+                    }
+                    $location.path('/bonus/{0}'.format(id));
+               };
+
             }
         ]
-    )
+    ).controller(jcs.modules.bonus.controllers.bonus_share,
+            ['$http', '$location', '$scope','$rootScope', 'eventbus', '$filter', jcs.modules.bonus.factory.json, '$routeParams',
+                function ($http, $location, $scope, $rootScope, eventbus, $filter, bonusFactory, $routeParams) {
+                    var currentId = $routeParams.id;
+                    $rootScope.loading = true;
+
+                    bonusFactory.getBonusInfo(currentId).then(function (response) {
+                        var data = response.data;
+                        $scope.bonusInfo = data;
+                        $rootScope.loading = false;
+                        return data.accounts;
+                    }, function (error) {
+                        console.error(error);
+                    });
+
+                    $scope.exchangeBonuses = function(accountId, sum, targetCard){
+                        $rootScope.loading = true;
+                        bonusFactory.getBonusInfo(accountId, sum, targetCard).then(function (response) {
+                            var data = response.data;
+                            if(data.errors){
+                                $scope.message = data.errors[0].message;
+                            }else{
+                                $scope.message = "";
+                            }
+                            $rootScope.loading = false;
+                        }, function (error) {
+                            console.error(error);
+                        });
+                    };
+                }
+            ]
+        )
+
 
     ;
 

@@ -1,0 +1,45 @@
+<div content-for="title">
+    <span>Передать бонус</span>
+</div>
+
+<div class="scrollable" ng-controller="BonusShareController">
+    <div class="scrollable-content">
+
+        <!-- st-safe-src="rowCollection" - to add sorting, but some error wit infinitive loop-->
+        <div class="container-fluid section section-break">
+
+            <div class="btn-group justified">
+                <span class="">ID</span>
+                <span>{{bonusInfo.id}}</span>
+            </div>
+            <div class="btn-group justified">
+                <span class="">Бренд</span>
+                <span>{{bonusInfo.brands}}</span>
+            </div>
+            <div class="btn-group justified">
+                <span class="">Бонусы</span>
+                <span>{{bonusInfo.bonus}}</span>
+            </div>
+
+            <label class="control-label" for="cardNumber">Номер карты получателя</label>
+            <input type="text" class="form-control" id="cardNumber">
+
+
+            <label class="control-label" for="bonusToShare">Кол-во бонусов</label>
+            <input type="text" class="form-control" id="bonusToShare">
+            <span class="glyphicon glyphicon-ok form-control-feedback">{{message}}</span>
+
+
+            <div content-for="navbarAction" duplicate>
+                <button ng-click="exchangeBonuses(22222 ,1111, 222222)" class="btn btn-primary">
+                    Передать бонусы
+                </button>
+            </div>
+
+
+        </div>
+
+
+        <div ng-show="isLoading" class="loading-indicator"></div>
+    </div>
+</div>

@@ -15,10 +15,26 @@
                     url = '/api2/accounts.json?sid:{0}'.format(sid);
                 }
 
-
-
                 var deferred = $q.defer(),
                 httpPromise = $http.get(url);
+
+                httpPromise.then(function (response) {
+                    deferred.resolve(response);
+                }, function (error) {
+                    console.error(error);
+                });
+
+                return deferred.promise;
+            },
+            getBonusInfo: function (id) {
+                var sid = $cookies.token;
+                console.log(sid);
+                console.log("id - : ");
+                console.log(id);
+
+                var url = '/api2/accounts/{0}.json?sid:{1}'.format(id, sid);
+                var deferred = $q.defer(),
+                    httpPromise = $http.get(url);
 
                 httpPromise.then(function (response) {
                     deferred.resolve(response);
