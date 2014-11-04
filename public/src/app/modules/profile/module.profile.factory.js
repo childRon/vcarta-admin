@@ -18,6 +18,32 @@
                 });
 
                 return deferred.promise;
+            },
+            save: function(profile){
+                var sid = $cookies.token;
+                var dataRequest = "sid:{0},firstname:{1},lastname:{2},patronymic:{3},mobile:{4},email:{5}".format(sid, profile.firstname,
+                    profile.lastname, profile.patronymic, profile.mobile, profile.email);
+                 console.log(dataRequest);
+                console.log(encodeURI(dataRequest));
+                var request = $http({
+                    method: "put",
+                    url: "/api2/session/user.json",
+                    transformRequest: httpTransformer,
+                    data: {
+                        body: dataRequest
+                    }
+                });
+
+                var deferred = $q.defer();
+
+                request.then(function (response) {
+                    deferred.resolve(response);
+                }, function (error) {
+                    deferred.reject(error);
+                    console.error(error);
+                });
+
+                return deferred.promise;
             }
         };
     });

@@ -15,6 +15,18 @@
                     console.error(error);
                 });
 
+                $scope.saveProfile = function(){
+                    $rootScope.loading = true;
+                    profileFactory.save($scope.profile).then(function (response) {
+                        var data = response.data;
+                        console.log(data);
+                        $rootScope.loading = false;
+                        return data;
+                    }, function (error) {
+                        console.error(error);
+                    });
+                };
+
             }
         ]
     )
