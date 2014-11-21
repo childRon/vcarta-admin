@@ -32,8 +32,8 @@
                 for(var i = 1; i <= 31; i++){
                     $scope.dates[i-1] = {display: i};
                 }
-                $scope.monthes = [{display: "январь"}, {display: "февраль"}, {display: "март"},{display: "апрель"}, {display: "май"}, {display: "июнь"},
-                    {display: "июля"}, {display: "август"}, {display: "сентябрь"}, {display: "октябрь"}, {display: "ноябрь"}, {display: "декабрь"}]
+                $scope.monthes = [{display: "январь", order: 1}, {display: "февраль", order: 2}, {display: "март", order: 3},{display: "апрель", order: 4}, {display: "май", order: 5}, {display: "июнь",order: 6},
+                    {display: "июля", order: 7}, {display: "август",order: 8}, {display: "сентябрь", order: 9}, {display: "октябрь", order: 10}, {display: "ноябрь", order: 11}, {display: "декабрь", order: 12}]
 
                 $scope.years = [];
                 var currentYear = startDateObj.getFullYear();
@@ -51,34 +51,35 @@
 
 
 
-                var startDate = new Date();
-                startDate.setDate( $scope.selectedFromDate.display);
-                startDate.setMonth( $scope.selectedFromMonth.display);
-                startDate.setFullYear( $scope.selectedFromYear.display);
 
-                var endDate = new Date();
-                endDate.setDate( $scope.selectedToDate.display);
-                endDate.setMonth( $scope.selectedToMonth.display);
-                endDate.setFullYear( $scope.selectedToYear.display);
 
                 $scope.debugInfo = function(){
-                    console.log( $scope.selectedFromDate);
-                    console.log( $scope.selectedFromMonth);
-                    console.log( $scope.selectedFromYear);
-                    console.log( $scope.selectedToDate);
-                    console.log( $scope.selectedToMonth);
-                    console.log( $scope.selectedToYear);
+                    console.log( $scope.selectedFromDate.display);
+                    console.log( $scope.selectedFromMonth.display);
+                    console.log( $scope.selectedFromYear.display);
+                    console.log( $scope.selectedToDate.display);
+                    console.log( $scope.selectedToMonth.display);
+                    console.log( $scope.selectedToYear.display);
+                    var startDate = new Date($scope.selectedFromYear.display ,$scope.selectedFromMonth.order, $scope.selectedFromDate.display);
+
+                    var endDate = new Date($scope.selectedToYear.display ,$scope.selectedToMonth.order, $scope.selectedToDate.display);
                     var startDateValueReq = $filter('date')(startDate, requestPattern);
                     var endDateValueReq = $filter('date')(endDate, requestPattern);
-                    console.log( startDateValueReq);
-                    console.log( endDateValueReq);
+                    console.log(startDateValueReq)
+                    console.log(endDateValueReq)
+
 
                 }
 
                 $scope.submit = function () {
+                    var startDate = new Date($scope.selectedFromYear.display ,$scope.selectedFromMonth.order, $scope.selectedFromDate.display);
+
+                    var endDate = new Date($scope.selectedToYear.display ,$scope.selectedToMonth.order, $scope.selectedToDate.display);
 
                     var startDateValueReq = $filter('date')(startDate, requestPattern);
                     var endDateValueReq = $filter('date')(endDate, requestPattern);
+                    console.log( startDateValueReq);
+                    console.log( endDateValueReq);
                     $rootScope.loading = true;
                     purchaseJsonFactory.getPurchaseStuff(startDateValueReq, endDateValueReq).then(function (response) {
                         var data = response.data;
@@ -90,6 +91,7 @@
 
                         $scope.rowCollection = data.purchases;
                         $scope.displayedCollection = [].concat($scope.rowCollection);
+                        console.log( $scope.displayedCollection);
                         $rootScope.loading = false;
                         return data.purchases;
                     }, function (error) {
