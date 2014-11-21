@@ -5,8 +5,6 @@
         ['$http', '$scope','$rootScope','eventbus', '$timeout', jcs.modules.purchase.factory.json, '$filter',
             function ($http, $scope,$rootScope, eventbus, $timeout, purchaseJsonFactory, $filter) {
 
-                var startDateObj = new Date();
-                var endDateObj = new Date(new Date().setMonth(startDateObj.getMonth() - 1));
 
                 var pattern = 'mediumDate';
 
@@ -26,20 +24,61 @@
                 $scope.columnNames = ['Дата', 'Место', 'Сумма покупки', 'Сумма скидки', 'Итоговая сумма покупки'];
 
 
+                var startDateObj = new Date();
+                var endDateObj = new Date(new Date().setMonth(startDateObj.getMonth() - 1));
 
 
-                $scope.$watch('endDate', function() {
-                    endDateValue = $scope.endDate;
-                });
+                $scope.dates= [];
+                for(var i = 1; i <= 31; i++){
+                    $scope.dates[i-1] = {display: i};
+                }
+                $scope.monthes = [{display: "январь"}, {display: "февраль"}, {display: "март"},{display: "апрель"}, {display: "май"}, {display: "июнь"},
+                    {display: "июля"}, {display: "август"}, {display: "сентябрь"}, {display: "октябрь"}, {display: "ноябрь"}, {display: "декабрь"}]
 
-                $scope.$watch('startDate', function() {
-                    startDateValue = $scope.startDate;
-                });
+                $scope.years = [];
+                var currentYear = startDateObj.getFullYear();
+                for(var i = currentYear - 5, j = 0; j <= 5, i != currentYear + 1; i++, j++){
+                    $scope.years[j] = {display: i};
+                }
+
+                $scope.selectedFromDate = $scope.dates[startDateObj.getDate() - 1];
+                $scope.selectedFromMonth = $scope.monthes[startDateObj.getMonth() - 1];
+                $scope.selectedFromYear = $scope.years[5];
+
+                $scope.selectedToDate = $scope.dates[startDateObj.getDate() - 1];
+                $scope.selectedToMonth = $scope.monthes[startDateObj.getMonth()];
+                $scope.selectedToYear = $scope.years[5];
+
+
+
+                var startDate = new Date();
+                startDate.setDate( $scope.selectedFromDate.display);
+                startDate.setMonth( $scope.selectedFromMonth.display);
+                startDate.setFullYear( $scope.selectedFromYear.display);
+
+                var endDate = new Date();
+                endDate.setDate( $scope.selectedToDate.display);
+                endDate.setMonth( $scope.selectedToMonth.display);
+                endDate.setFullYear( $scope.selectedToYear.display);
+
+                $scope.debugInfo = function(){
+                    console.log( $scope.selectedFromDate);
+                    console.log( $scope.selectedFromMonth);
+                    console.log( $scope.selectedFromYear);
+                    console.log( $scope.selectedToDate);
+                    console.log( $scope.selectedToMonth);
+                    console.log( $scope.selectedToYear);
+                    var startDateValueReq = $filter('date')(startDate, requestPattern);
+                    var endDateValueReq = $filter('date')(endDate, requestPattern);
+                    console.log( startDateValueReq);
+                    console.log( endDateValueReq);
+
+                }
 
                 $scope.submit = function () {
 
-                    var startDateValueReq = $filter('date')(new Date(startDateValue), requestPattern);
-                    var endDateValueReq = $filter('date')(new Date(endDateValue), requestPattern);
+                    var startDateValueReq = $filter('date')(startDate, requestPattern);
+                    var endDateValueReq = $filter('date')(endDate, requestPattern);
                     $rootScope.loading = true;
                     purchaseJsonFactory.getPurchaseStuff(startDateValueReq, endDateValueReq).then(function (response) {
                         var data = response.data;

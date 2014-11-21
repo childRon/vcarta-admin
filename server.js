@@ -26,7 +26,9 @@ app.use('/api2', function(req, res) {
             r = request.post({uri: url, body: req.body['body']});
             break;
         case 'PUT':
-            r = request.put({uri: url, body: req.body['body']});
+            console.log(req.body['body']);
+            var test = "sid:4fc4047eb179b7ae3b71,firstname:\u041d\u0435\u0432\u0435\u0440\u043d\u044b\u0439,lastname:Misan2,patronymic:Viktarovich,mobile:375295278342,email:senddownrain@gmail.com";
+            r = request.put({uri: url,headers:{'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}, body: test});
             break;
         case 'GET' :
             r = request(url);

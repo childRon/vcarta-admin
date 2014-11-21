@@ -1,6 +1,16 @@
 (function (angular, jcs) {
     'use strict';
 
+    function transformToUTF (str) {
+        return str.replace(
+            /./ig, // what characters to change (`.` matches most chars)
+            function ($0) {
+                var x = $0.charCodeAt(0).toString(16); // code to hex string
+                return '\\u' + '0000'.slice(x.length) + x; // prefix, pad, concat
+            }
+        );
+    }
+
    angular.module(jcs.modules.profile.name).factory(jcs.modules.profile.factory.json, function ($q, $http, $cookies, httpTransformer) {
         return {
             getProfile: function () {
@@ -23,8 +33,9 @@
                 var sid = $cookies.token;
                 var dataRequest = "sid:{0},firstname:{1},lastname:{2},patronymic:{3},mobile:{4},email:{5}".format(sid, profile.firstname,
                     profile.lastname, profile.patronymic, profile.mobile, profile.email);
-                 console.log(dataRequest);
-                console.log(encodeURI(dataRequest));
+
+                console.log(dataRequest);
+
                 var request = $http({
                     method: "put",
                     url: "/api2/session/user.json",
