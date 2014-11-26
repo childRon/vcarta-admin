@@ -22,6 +22,18 @@
                     $scope.isBusy = false;
                 });
             };
+
+            $scope.logout = function () {
+
+                authentication.logout().then(function () {
+                    $location.path(jcs.modules.core.routes.home);
+                }, function () {
+
+                })['finally'](function () {
+                    $scope.isBusy = false;
+                });
+            };
+
         }
     ]);
 }(angular, jcs));

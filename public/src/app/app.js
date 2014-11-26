@@ -35,6 +35,7 @@
     app.config(function ($routeProvider, $locationProvider) {
         $routeProvider.when('/', {
             templateUrl: "src/app/modules/purchase/purchase.tmpl.html",
+            controller: jcs.modules.auth.controllers.login,
             access: {
                 loginRequired: true
             }
