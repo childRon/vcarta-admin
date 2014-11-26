@@ -17,7 +17,7 @@
                         permissions: permissions
                     };
                 },
-                login = function (cardId, password) {
+                login = function (cardId, password, keepIn) {
                     var deferred = $q.defer();
                     // By default, the $http service will transform the outgoing request by
                     // serializing the data as JSON and then posting it with the content-
@@ -37,8 +37,10 @@
                     request.success(function (data, status, headers, config) {
                             var sid = data.sid;
                             if (sid) {
-                                $cookies.token = sid;
-                                $cookies.user = angular.toJson(data);
+//                                if(keepIn){
+                                    $cookies.token = sid;
+                                    $cookies.user = angular.toJson(data);
+//                                }
                                 currentUser = data;
                                 eventbus.broadcast(jcs.modules.auth.events.userLoggedIn, currentUser);
                                 deferred.resolve(data);

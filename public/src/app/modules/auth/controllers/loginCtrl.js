@@ -10,10 +10,11 @@
             $scope.isBusy = false;
             $scope.invalidLogin = false;
 
+
             $scope.login = function () {
                 $scope.invalidLogin = false;
                 $scope.isBusy = true;
-                authentication.login($scope.loginModel.email, $scope.loginModel.password).then(function () {
+                authentication.login($scope.loginModel.email, $scope.loginModel.password, $scope.loginModel.keepIn).then(function () {
                     $location.path(jcs.modules.core.routes.home);
                 }, function () {
                     $scope.invalidLogin = true;

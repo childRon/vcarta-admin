@@ -1,49 +1,64 @@
-<div content-for="title">
-    <span>Передать бонус</span>
-</div>
+<div class="main-inner" ng-controller="BonusShareController">
 
-<div class="scrollable" ng-controller="BonusShareController">
-    <div class="scrollable-content">
+    <div class="container">
 
-        <!-- st-safe-src="rowCollection" - to add sorting, but some error wit infinitive loop-->
-        <div class="container-fluid section section-break">
-            <div bs-panel class="form-actions">
-                <div class="btn-group justified">
-                    <span class="">ID</span>
-                    <span>{{bonusInfo.id}}</span>
-                </div>
-                <div class="btn-group justified">
-                    <span class="">Бренд</span>
-                    <span>{{bonusInfo.brands}}</span>
-                </div>
-                <div class="btn-group justified">
-                    <span class="">Бонусы</span>
-                    <span>{{bonusInfo.bonus}}</span>
-                </div>
+        <div class="row">
 
-            </div>
+            <div class="span12">
 
-            <div bs-panel class="form-actions">
-                <label class="control-label" for="cardNumber">Номер карты получателя</label>
-                <input type="text" class="form-control" id="cardNumber">
+                <div class="widget ">
+
+                    <div class="widget-header">
+                        <i class="icon-user"></i>
+                        <h3>Бренд: {{bonusInfo.brands}}}</h3>
+                    </div> <!-- /widget-header -->
+                    <div class="widget-content">
+                        <h3>Всего бонусов: {{bonusInfo.bonus}}</h3>
+                    </div> <!-- /widget-header -->
+
+                    <div class="widget-content">
 
 
-                <label class="control-label" for="bonusToShare">Кол-во бонусов</label>
-                <input type="text" class="form-control" id="bonusToShare">
-                <span class="glyphicon glyphicon-ok form-control-feedback">{{message}}</span>
-            </div>
+                        <form id="edit-profile" class="form-horizontal">
+                            <fieldset>
 
-            <div bs-panel class="form-actions">
-                <div content-for="navbarAction" duplicate>
-                    <button ng-click="exchangeBonuses(22222 ,1111, 222222)" class="btn btn-primary">
-                        Передать бонусы
-                    </button>
-                </div>
-            </div>
-
-        </div>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <input type="text" class="span4" id="cardId" placeholder="Номер карты получателя">
+                                    </div> <!-- /controls -->
+                                </div> <!-- /control-group -->
 
 
-        <div ng-show="isLoading" class="loading-indicator"></div>
-    </div>
-</div>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <input type="text" class="span4" id="bonusToShare" placeholder="Кол-во бонусов">
+                                    </div> <!-- /controls -->
+                                </div> <!-- /control-group -->
+
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <button type="submit" class="btn btn-primary" ng-click="exchangeBonuses(22222 ,1111, 222222)">Передать бонусы</button>
+                                    </div>		<!-- /controls -->
+                                </div> <!-- /control-group -->
+
+                            </fieldset>
+
+                        </form>
+
+
+
+
+                    </div> <!-- /widget-content -->
+
+                </div> <!-- /widget -->
+
+            </div> <!-- /span8 -->
+
+
+
+
+        </div> <!-- /row -->
+
+    </div> <!-- /container -->
+
+</div> <!-- /main-inner -->
