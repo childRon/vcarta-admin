@@ -1,0 +1,116 @@
+<div class="main-inner" ng-controller="ProfileController">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="span12">
+
+                <div class="widget ">
+
+                    <div class="widget-header">
+                        <i class="icon-user"></i>
+                        <h3>Мои данные</h3>
+                    </div> <!-- /widget-header -->
+
+                    <div class="widget-content">
+
+
+                        <form id="edit-profile" class="form-horizontal">
+                            <fieldset>
+
+                                <div class="control-group">
+                                    <label class="control-label" for="login">Логин</label>
+                                    <div class="controls">
+                                        <input type="text" class="span6 disabled" id="login" value="{{profile.card}}" disabled>
+                                    </div> <!-- /controls -->
+                                </div> <!-- /control-group -->
+
+
+                                <div class="control-group">
+                                    <label class="control-label" for="level">Уровень</label>
+                                    <div class="controls">
+                                        <input type="text" class="span6" id="level" value="{{profile.discount_level}}" disabled>
+                                    </div> <!-- /controls -->
+                                </div> <!-- /control-group -->
+
+
+                                <div class="control-group">
+                                    <label class="control-label" for="city">Город</label>
+                                    <div class="controls">
+                                        <input type="text" class="span6" id="city" value="Минск" disabled>
+                                    </div> <!-- /controls -->
+                                </div> <!-- /control-group -->
+
+
+                                <div class="control-group">
+                                    <label class="control-label" for="firstname">Имя</label>
+                                    <div class="controls">
+                                        <input type="text" class="span6" id="firstname"  ng-model="profile.firstname" >
+                                    </div> <!-- /controls -->
+                                </div> <!-- /control-group -->
+
+                                <div class="control-group">
+                                    <label class="control-label" for="secondname">Фамилия</label>
+                                    <div class="controls">
+                                        <input type="text" class="span6" id="secondname" ng-model="profile.lastname" >
+                                    </div> <!-- /controls -->
+                                </div> <!-- /control-group -->
+
+                                <div class="control-group">
+                                    <label class="control-label" for="thirdname">Отчество</label>
+                                    <div class="controls">
+                                        <input type="text" class="span6" id="thirdname" ng-model="profile.patronymic" >
+                                    </div> <!-- /controls -->
+                                </div> <!-- /control-group -->
+
+                                <div class="control-group">
+                                    <label class="control-label" for="email">Email</label>
+                                    <div class="controls">
+                                        <input type="text" class="span6" id="email" ng-model="profile.email" disabled>
+                                    </div> <!-- /controls -->
+                                </div> <!-- /control-group -->
+
+                                <div class="control-group">
+                                    <label class="control-label" for="phone">Телефон</label>
+                                    <div class="controls">
+                                        <input type="number" class="span6" id="phone" ng-model="profile.mobile" disabled>
+                                    </div> <!-- /controls -->
+                                </div> <!-- /control-group -->
+
+                                <div class="control-group">
+                                    <!--<label class="control-label">Подписка</label>-->
+                                    <div class="controls">
+                                       <!-- <label class="checkbox inline">
+                                            <input type="checkbox" ng-checked="profile.subscription">
+
+                                        </label>-->
+                                        <button type="submit" class="btn btn-primary" ng-click="saveProfile()">Сохранить</button>
+                                    </div>		<!-- /controls -->
+                                </div> <!-- /control-group -->
+
+                                <!--
+                             <div class="form-actions">
+                                 <button type="submit" class="btn btn-primary">Сохранить</button>
+                             </div>
+                             -->
+                            </fieldset>
+                        </form>
+
+
+
+
+                    </div> <!-- /widget-content -->
+
+                </div> <!-- /widget -->
+
+            </div> <!-- /span8 -->
+
+
+
+
+        </div> <!-- /row -->
+
+    </div> <!-- /container -->
+
+</div> <!-- /main-inner -->

@@ -1,0 +1,64 @@
+<div class="main-inner" ng-controller="BonusShareController">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="span12">
+
+                <div class="widget ">
+
+                    <div class="widget-header">
+                        <i class="icon-user"></i>
+                        <h3>Бренд: {{bonusInfo.brands[0]}}</h3>
+                    </div> <!-- /widget-header -->
+                    <div class="widget-content">
+                        <h3>Всего бонусов: {{bonusInfo.bonus}} </h3>
+                    </div> <!-- /widget-header -->
+
+                    <div class="widget-content">
+
+
+                        <form id="edit-profile" class="form-horizontal">
+                            <fieldset>
+
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <input type="text" class="span4" id="cardId" ng-model="targetCard" placeholder="Номер карты получателя">
+                                    </div> <!-- /controls -->
+                                </div> <!-- /control-group -->
+
+
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <input type="text" class="span4" id="bonusToShare" ng-model="sum" placeholder="Кол-во бонусов">
+                                    </div> <!-- /controls -->
+                                </div> <!-- /control-group -->
+
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <button type="submit" class="btn btn-primary" ng-click="exchangeBonuses(bonusInfo.id)">Передать бонусы</button>
+                                    </div>		<!-- /controls -->
+                                </div> <!-- /control-group -->
+
+                            </fieldset>
+
+                        </form>
+
+
+
+
+                    </div> <!-- /widget-content -->
+
+                </div> <!-- /widget -->
+
+            </div> <!-- /span8 -->
+
+
+
+
+        </div> <!-- /row -->
+
+    </div> <!-- /container -->
+
+</div> <!-- /main-inner -->

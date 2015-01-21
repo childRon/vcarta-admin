@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<!--
+  ** NOTE **
+
+  Run `grunt connect` then
+  navigate to http://localhost:3000/demo
+  to see this pffage in browser
+
+  -->
+<html>
+<head>
+    <meta charset="utf-8"/>
+
+    <title>VartaCarta: личный кабинет</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link href="ui/css/bootstrap.min.css" rel="stylesheet">
+    <link href="ui/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600"
+          rel="stylesheet">
+    <link href="ui/css/font-awesome.css" rel="stylesheet">
+    <link href="ui/css/style.css" rel="stylesheet">
+    <link href="ui/css/pages/dashboard.css" rel="stylesheet">
+      <link href="ui/css/pages/signin.css" rel="stylesheet" type="text/css">
+
+
+    <link rel="shortcut icon" href="ui/favicon.png" type="image/x-icon"/>
+
+    <link rel="stylesheet" href="dist/css/angular-datepicker.min.css"/>
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+</head>
+<body ng-app="cabinet" ng-controller="MainController">
+<div id="wrap">
+
+    <div class="main clearfix" >
+        <!-- Navigation -->
+        <div ng-include="'ui/nav.html'" id="mainSidebar"></div>
+        <!-- App Body -->
+        <div class="app-body" ng-class="{loading: loading}">
+            <div ng-show="loading" class="app-content-loading">
+                <i class="icon icon-spinner icon-spin loading-spinner"></i>
+            </div>
+            <ng-view class="app-content" ng-hide="loading"></ng-view>
+        </div>
+
+    </div>
+</div>
+<!-- ~ .app -->
+<div id="footer">
+    <div class="extra">
+
+        <div class="extra-inner">
+
+            <div class="container">
+
+                <div class="row">
+                    <div class="span4">
+                        <h4>
+                            О компании</h4>
+                        <ul>
+                            <li><a href="http://vartacarta.by/partners">Наши партнеры</a></li>
+                            <li><a href="http://vartacarta.by/rooles">О дисконтно-бонусной карте</a></li>
+                            <li><a href="http://vartacarta.by/rooles">Правила "VartaCarta"</a></li>
+
+                        </ul>
+                    </div>
+                    <!-- /span3 -->
+                    <div class="span4">
+                        <h4>
+                            Помощь</h4>
+                        <ul>
+                            <li><a href="http://vartacarta.by/questionsanswers">Вопросы и ответы</a></li>
+                            <li><a href="http://vartacarta.by/questionsanswers">Задать вопрос</a></li>
+                            <li><a href="http://vartacarta.by/questionsanswers">Написать в службу поддержки</a></li>
+                        </ul>
+                    </div>
+                    <!-- /span3 -->
+                    <div class="span4">
+                        <h4>
+                            Something Legal</h4>
+                        <ul>
+                            <li><a href="javascript:;">Read License</a></li>
+                            <li><a href="javascript:;">Terms of Use</a></li>
+                            <li><a href="javascript:;">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- /span3 -->
+                </div>
+                <!-- /row -->
+
+            </div>
+            <!-- /container -->
+
+        </div>
+        <!-- /extra-inner -->
+
+    </div>
+    <!-- /extra -->
+
+
+    <div class="footer">
+
+        <div class="footer-inner">
+
+            <div class="container">
+
+                <div class="row">
+
+                    <div class="span12">
+                        &copy; 2014 <a href="http://www.vartacarta.by/">vartacarta.by
+                    </a> Все права защищены.
+                    </div>
+                    <!-- /span12 -->
+
+                </div>
+                <!-- /row -->
+
+            </div>
+            <!-- /container -->
+
+        </div>
+        <!-- /footer-inner -->
+
+    </div>
+    <!-- /footer -->
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular-route.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular-touch.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular-cookies.js"></script>
+<script src="dist/js/mobile-angular-ui.min.js"></script>
+<script src="dist/js/lrDragNDrop.js"></script>
+<script src="dist/js/smart-table.debug.js"></script>
+<script src="dist/js/lrInfiniteScrollPlugin.js"></script>
+<script src="vendor/ui-utils/ui-utils.js"></script>
+
+<script src="vendor/angular/angular-datepicker.min.js"></script>
+
+<script src="src/app/jcs.js"></script>
+
+<script type="application/javascript" src="src/app/modules/core/module.core.js"></script>
+<script type="application/javascript" src="src/app/modules/core/module.core.controller.js"></script>
+<script type="application/javascript" src="src/app/modules/core/factories/module.core.factory.js"></script>
+
+<script type="application/javascript" src="src/app/modules/core/services/eventbus.js"></script>
+
+<script type="application/javascript" src="src/app/modules/purchase/module.purchase.js"></script>
+<script type="application/javascript" src="src/app/modules/purchase/module.purchase.routes.js"></script>
+<script type="application/javascript" src="src/app/modules/purchase/module.purchase.factory.js"></script>
+<script type="application/javascript" src="src/app/modules/purchase/module.purchase.directive.js"></script>
+<script type="application/javascript" src="src/app/modules/purchase/module.purchase.controller.js"></script>
+
+<script type="application/javascript" src="src/app/modules/bonus/module.bonus.js"></script>
+<script type="application/javascript" src="src/app/modules/bonus/module.bonus.routes.js"></script>
+<script type="application/javascript" src="src/app/modules/bonus/module.bonus.factory.js"></script>
+<script type="application/javascript" src="src/app/modules/bonus/module.bonus.controller.js"></script>
+
+
+<script type="application/javascript" src="src/app/modules/profile/module.profile.js"></script>
+<script type="application/javascript" src="src/app/modules/profile/module.profile.routes.js"></script>
+<script type="application/javascript" src="src/app/modules/profile/module.profile.factory.js"></script>
+<script type="application/javascript" src="src/app/modules/profile/module.profile.controller.js"></script>
+
+
+<script type="application/javascript" src="src/app/modules/auth/module.auth.js"></script>
+<script type="application/javascript" src="src/app/modules/auth/module.auth.routes.js"></script>
+<script type="application/javascript" src="src/app/modules/auth/services/authentication.js"></script>
+<script type="application/javascript" src="src/app/modules/auth/services/authorization.js"></script>
+<script type="application/javascript" src="src/app/modules/auth/controllers/loginCtrl.js"></script>
+<script type="application/javascript" src="src/app/modules/auth/directives/access.js"></script>
+<script type="application/javascript" src="src/app/modules/auth/module.auth.run.js"></script>
+
+<script type="application/javascript" src="src/app/modules/admin/module.admin.js"></script>
+<script type="application/javascript" src="src/app/modules/admin/module.admin.routes.js"></script>
+<script type="application/javascript" src="src/app/modules/admin/controllers/userListCtrl.js"></script>
+
+
+<script src="src/app/app.js"></script>
+
+
+</body>
+</html>

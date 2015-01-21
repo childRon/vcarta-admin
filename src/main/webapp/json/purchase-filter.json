@@ -1,0 +1,32 @@
+{"dates": {
+    "from": "2014-07-01",
+    "to": "2014-09-05"
+}, "limit": 2, "offset": 10, "purchases": [
+    {
+        "id": 999252,
+        "sum": 15555000,
+        "created_at": "2014-08-08 01:54",
+        "point": "Tyur",
+        "brand": "re",
+        "discount": "Rodert",
+        "bonus": 453438,
+        "final_sum": 15114600
+    },
+    {
+        "id": 999251,
+        "sum": 15555000,
+        "created_at": "2014-08-08 01:52",
+        "point": "wewe",
+        "brand": "sdsdd",
+        "discount": "Rodert1",
+        "bonus": 440433,
+        "final_sum": 14681100,
+        "refund": {
+            "created_at": "2014-08-08 02:21",
+            "sum": 15555000
+        }
+    }
+], "total": {
+    "count": 14,
+    "sum": 311910000
+}}
