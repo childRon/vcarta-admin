@@ -1,16 +1,10 @@
-lib-cov
-*.seed
-*.log
-*.csv
-*.dat
-*.out
-*.pid
-*.gz
+# Compiled source #
+###################
+*.class
 
-pids
-logs
-results
-
-npm-debug.log
-node_modules
+ 
+# IDEA JetBrains Project #
+######################
+*.iml
 .idea
+target
