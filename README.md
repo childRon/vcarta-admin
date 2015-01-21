@@ -10,7 +10,7 @@ JDK 6+
 ## Installation
 
 1. Clone the repository: `git clone https://github.com/childRon/vcarta-admin.git`
-2. Maven run the application: `mvn clean install`
+2. Maven run the application for development: `mvn jetty:run`
 
 ## Tutorial Series
 
