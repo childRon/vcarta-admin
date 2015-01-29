@@ -22,6 +22,10 @@
                     $scope.sum = data.total.sum;
                     $scope.count = data.total.count;
 
+                    // only first elements in brands should be displayed
+                    for( var i =0; i < data.accounts.length; i++){
+                        data.accounts[i].brands = data.accounts[i].brands[0]
+                    }
                     $scope.rowCollection = data.accounts;
                     $scope.displayedCollection = [].concat($scope.rowCollection);
                     $rootScope.loading = false;

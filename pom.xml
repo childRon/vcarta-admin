@@ -76,9 +76,15 @@
                     <stopPort>9999</stopPort>
                     <scanIntervalSeconds>5</scanIntervalSeconds>
                     <connectors>
-                        <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+                        <!--default-->
+                        <!--<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+                            <port>8181</port>
+                        </connector>-->
+                        <!--to avoid file locking-->
+                        <connector implementation="org.eclipse.jetty.server.bio.SocketConnector">
                             <port>8181</port>
                         </connector>
+
                     </connectors>
                     <contextXml>${project.build.testOutputDirectory}/jetty-context.xml</contextXml>
                 </configuration>

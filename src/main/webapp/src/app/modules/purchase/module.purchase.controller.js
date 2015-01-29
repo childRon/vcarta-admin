@@ -8,6 +8,12 @@
 
                 var pattern = 'mediumDate';
 
+                var startDateObj = new Date();
+
+                var endDateObj = new Date(new Date().setMonth(startDateObj.getMonth() - 1));
+                console.log(endDateObj)
+                console.log("0909")
+
                 var startDateValue = $filter('date')(startDateObj, pattern);
                 var endDateValue = $filter('date')(endDateObj, pattern);
                 var requestPattern = 'yyyy-MM-dd';
@@ -24,16 +30,15 @@
                 $scope.columnNames = ['Дата', 'Место', 'Сумма покупки', 'Сумма скидки', 'Итоговая сумма покупки'];
 
 
-                var startDateObj = new Date();
-                var endDateObj = new Date(new Date().setMonth(startDateObj.getMonth() - 1));
+
 
 
                 $scope.dates= [];
                 for(var i = 1; i <= 31; i++){
                     $scope.dates[i-1] = {display: i};
                 }
-                $scope.monthes = [{display: "январь", order: 1}, {display: "февраль", order: 2}, {display: "март", order: 3},{display: "апрель", order: 4}, {display: "май", order: 5}, {display: "июнь",order: 6},
-                    {display: "июля", order: 7}, {display: "август",order: 8}, {display: "сентябрь", order: 9}, {display: "октябрь", order: 10}, {display: "ноябрь", order: 11}, {display: "декабрь", order: 12}]
+                $scope.monthes = [{display: "январь", order: 0}, {display: "февраль", order: 1}, {display: "март", order: 2},{display: "апрель", order: 3}, {display: "май", order: 4}, {display: "июнь",order: 5},
+                    {display: "июля", order: 6}, {display: "август",order: 7}, {display: "сентябрь", order: 8}, {display: "октябрь", order: 9}, {display: "ноябрь", order: 10}, {display: "декабрь", order: 11}]
 
                 $scope.years = [];
                 var currentYear = startDateObj.getFullYear();
@@ -41,13 +46,18 @@
                     $scope.years[j] = {display: i};
                 }
 
-                $scope.selectedFromDate = $scope.dates[startDateObj.getDate() - 1];
-                $scope.selectedFromMonth = $scope.monthes[startDateObj.getMonth() - 1];
-                $scope.selectedFromYear = $scope.years[5];
+                $scope.selectedFromDate = $scope.dates[endDateObj.getDate() - 1];
+                $scope.selectedFromMonth = $scope.monthes[endDateObj.getMonth()];
+                var fromYearIndex = startDateObj.getMonth() == 0 ? 4 : 5;
+                $scope.selectedFromYear = $scope.years[fromYearIndex];
+                console.log($scope.selectedFromMonth);
 
                 $scope.selectedToDate = $scope.dates[startDateObj.getDate() - 1];
                 $scope.selectedToMonth = $scope.monthes[startDateObj.getMonth()];
                 $scope.selectedToYear = $scope.years[5];
+                console.log("-");
+                console.log($scope.selectedToMonth);
+
 
 
 
