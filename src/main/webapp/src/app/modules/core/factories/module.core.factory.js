@@ -23,6 +23,10 @@
             // PRVIATE METHODS.
             // ---
 
+            function encodeData(s){
+                return encodeURIComponent(s).replace(/\-/g, "%2D").replace(/\_/g, "%5F").replace(/\./g, "%2E").replace(/\!/g, "%21").replace(/\~/g, "%7E").replace(/\*/g, "%2A").replace(/\'/g, "%27").replace(/\(/g, "%28").replace(/\)/g, "%29");
+            }
+
 
             // I serialize the given Object into a key-value pair string. This
             // method expects an object and will default to the toString() method.
@@ -31,12 +35,15 @@
             // will serialize a data collection for Form posting.
             // --
             // https://github.com/jquery/jquery/blob/master/src/serialize.js#L45
+
             function serializeData(data) {
 
                 // If this is not an object, defer to native stringification.
                 if (!angular.isObject(data)) {
 
-                    return( ( data == null ) ? "" : data.toString() );
+                    var encodedData = encodeData(( data == null ) ? "" : data.toString());
+                    console.log(encodedData)
+                    return    encodedData;
 
                 }
 
@@ -66,7 +73,6 @@
                         .join("&")
                         .replace(/%20/g, "+")
                     ;
-
                 return( source );
 
             }

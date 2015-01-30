@@ -27,6 +27,7 @@
         },
         routes: {
             login: '/login',
+            logout: '/logout',
             notAuthorised: '/not-authorised'
         }
     };

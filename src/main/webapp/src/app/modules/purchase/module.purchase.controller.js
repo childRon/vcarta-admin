@@ -11,8 +11,6 @@
                 var startDateObj = new Date();
 
                 var endDateObj = new Date(new Date().setMonth(startDateObj.getMonth() - 1));
-                console.log(endDateObj)
-                console.log("0909")
 
                 var startDateValue = $filter('date')(startDateObj, pattern);
                 var endDateValue = $filter('date')(endDateObj, pattern);
@@ -50,13 +48,10 @@
                 $scope.selectedFromMonth = $scope.monthes[endDateObj.getMonth()];
                 var fromYearIndex = startDateObj.getMonth() == 0 ? 4 : 5;
                 $scope.selectedFromYear = $scope.years[fromYearIndex];
-                console.log($scope.selectedFromMonth);
 
                 $scope.selectedToDate = $scope.dates[startDateObj.getDate() - 1];
                 $scope.selectedToMonth = $scope.monthes[startDateObj.getMonth()];
                 $scope.selectedToYear = $scope.years[5];
-                console.log("-");
-                console.log($scope.selectedToMonth);
 
 
 
@@ -88,8 +83,6 @@
 
                     var startDateValueReq = $filter('date')(startDate, requestPattern);
                     var endDateValueReq = $filter('date')(endDate, requestPattern);
-                    console.log( startDateValueReq);
-                    console.log( endDateValueReq);
                     $rootScope.loading = true;
                     purchaseJsonFactory.getPurchaseStuff(startDateValueReq, endDateValueReq).then(function (response) {
                         var data = response.data;
@@ -101,7 +94,6 @@
 
                         $scope.rowCollection = data.purchases;
                         $scope.displayedCollection = [].concat($scope.rowCollection);
-                        console.log( $scope.displayedCollection);
                         $rootScope.loading = false;
                         return data.purchases;
                     }, function (error) {

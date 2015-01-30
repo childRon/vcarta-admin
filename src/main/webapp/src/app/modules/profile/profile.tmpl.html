@@ -17,6 +17,12 @@
 
 
                         <form id="edit-profile" class="form-horizontal">
+                            <div class="alert alert-error"  ng-show="error">
+                                <strong>{{message}}</strong>
+                            </div>
+                            <div class="alert alert-success"  ng-show="success">
+                                <strong>Данные успешно обновлены!</strong>
+                            </div>
                             <fieldset>
 
                                 <div class="control-group">
@@ -74,7 +80,7 @@
                                 <div class="control-group">
                                     <label class="control-label" for="phone">Телефон</label>
                                     <div class="controls">
-                                        <input type="number" class="span6" id="phone" ng-model="profile.mobile" disabled>
+                                        <input type="text" class="span6" id="phone" ng-model="profile.mobile">
                                     </div> <!-- /controls -->
                                 </div> <!-- /control-group -->
 

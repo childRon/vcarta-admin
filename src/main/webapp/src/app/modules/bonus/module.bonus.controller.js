@@ -2,8 +2,8 @@
     'use strict';
 
     angular.module(jcs.modules.bonus.name).controller(jcs.modules.bonus.controllers.bonus,
-        ['$http', '$location', '$scope','$rootScope', 'eventbus', '$filter', jcs.modules.bonus.factory.json,
-            function ($http, $location, $scope, $rootScope, eventbus, $filter, bonusFactory) {
+        ['$http', '$location', '$scope','$rootScope', 'eventbus', 'tools', '$filter', jcs.modules.bonus.factory.json,
+            function ($http, $location, $scope, $rootScope, eventbus, tools, $filter, bonusFactory) {
 
                 var pattern = 'mediumDate';
 
@@ -23,21 +23,9 @@
                     $scope.sum = data.total.sum;
                     $scope.count = data.total.count;
 
-
-
                     // transform array to string
                     for( var i =0; i < data.accounts.length; i++){
-                        var accountBrands = "";
-                        var j= 0;
-                        var allBrandsLength = data.accounts[i].brands.length;
-                        data.accounts[i].brands.forEach(function(entry) {
-                            accountBrands = accountBrands + entry ;
-                            j++;
-                            if(j != allBrandsLength ){
-                                accountBrands = accountBrands + ", ";
-                            }
-                        });
-                        data.accounts[i].brands = accountBrands;
+                        data.accounts[i].brands = tools.transformArrayIntoString(data.accounts[i].brands, ", ");
                     }
                     $scope.rowCollection = data.accounts;
                     $scope.displayedCollection = [].concat($scope.rowCollection);
@@ -57,8 +45,8 @@
             }
         ]
     ).controller(jcs.modules.bonus.controllers.bonus_share,
-            ['$http', '$location', '$scope','$rootScope', 'eventbus', '$filter', jcs.modules.bonus.factory.json, '$routeParams',
-                function ($http, $location, $scope, $rootScope, eventbus, $filter, bonusFactory, $routeParams) {
+            ['$http', '$location', '$scope','$rootScope', 'eventbus','tools', '$filter', jcs.modules.bonus.factory.json, '$routeParams',
+                function ($http, $location, $scope, $rootScope, eventbus, tools, $filter, bonusFactory, $routeParams) {
                     var currentId = $routeParams.id;
                     $rootScope.loading = true;
                     $scope.targetCard = "";
@@ -70,18 +58,7 @@
                         var data = response.data;
                         $scope.bonusInfo = data;
 
-                        var accountBrands = "";
-                        var j= 0;
-                        var allBrandsLength = $scope.bonusInfo.brands.length;
-                        $scope.bonusInfo.brands.forEach(function(entry) {
-                            accountBrands = accountBrands + entry ;
-                            j++;
-                            if(j != allBrandsLength ){
-                                accountBrands = accountBrands + ", ";
-                            }
-                        });
-                        $scope.bonusInfo.brands = accountBrands;
-
+                        $scope.bonusInfo.brands = tools.transformArrayIntoString($scope.bonusInfo.brands, ", ");
 
                         $rootScope.loading = false;
                         return data.accounts;
@@ -104,16 +81,8 @@
                             }else{
                                 $rootScope.bonusShared = true;
 
-                                $scope.shareBrands = "";
-                                var i= 0;
-                                var allBrandsLength = data.brands.length;
-                                data.brands.forEach(function(entry) {
-                                    $scope.shareBrands = $scope.shareBrands + entry ;
-                                    i++;
-                                    if(i != allBrandsLength ){
-                                        $scope.shareBrands = $scope.shareBrands + ", ";
-                                    }
-                                });
+                                $scope.shareBrands = tools.transformArrayIntoString(data.brands, ", ");
+
                                 $scope.shareCardFor = data.target_account.card_number;
                                 $scope.bonusForBefore = data.target_account.sum_before;
                                 $scope.bonusForAfter = data.target_account.sum_after;

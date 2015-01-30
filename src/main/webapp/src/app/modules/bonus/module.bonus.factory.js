@@ -6,7 +6,6 @@
         return {
             getBonusStuff: function (offset, limit) {
                 var sid = $cookies.token;
-                console.log(sid);
                 var pagingParams = '';
                 var url = '';
                 if (offset && limit) {
@@ -29,9 +28,6 @@
             },
             getBonusInfo: function (id) {
                 var sid = $cookies.token;
-                console.log(sid);
-                console.log("id - : ");
-                console.log(id);
 
                 var url = 'api2/accounts/{0}.json?sid:{1}'.format(id, sid);
                 var deferred = $q.defer(),

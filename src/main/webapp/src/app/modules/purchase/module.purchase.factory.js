@@ -5,7 +5,6 @@
         return {
             getPurchaseStuff: function (date_from,date_to,offset,limit) {
                 var sid = $cookies.token;
-                console.log(sid) ;
                 var pagingParams = '';
                 if(offset && limit){
                     pagingParams = ",offset:{3},limit:{4}".format(offset,limit);

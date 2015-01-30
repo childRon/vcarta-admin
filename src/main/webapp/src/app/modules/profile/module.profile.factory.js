@@ -15,7 +15,6 @@
         return {
             getProfile: function () {
                 var sid = $cookies.token;
-                console.log(sid) ;
                 var url = 'api2/session/user.json?sid:{0}'.format(sid);
 
                 var deferred = $q.defer(),
@@ -31,7 +30,7 @@
             },
             save: function(profile){
                 var sid = $cookies.token;
-                var dataRequest = "sid:{0},firstname:{1},lastname:{2},patronymic:{3}".format(sid, profile.firstname,
+                var dataRequest = "sid:{0},firstname:{1},lastname:{2},patronymic:{3},mobile:{4}".format(sid, profile.firstname,
                     profile.lastname, profile.patronymic, profile.mobile, profile.email);
 
                 console.log(dataRequest);

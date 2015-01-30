@@ -8,6 +8,10 @@
                 controller: jcs.modules.auth.controllers.login,
                 templateUrl: 'src/app/modules/auth/html/login.tmpl.html'
             });
+            $routeProvider.when(jcs.modules.auth.routes.logout, {
+                controller: jcs.modules.auth.controllers.login,
+                templateUrl: 'src/app/modules/auth/html/login.tmpl.html'
+            });
             $routeProvider.when(jcs.modules.auth.routes.notAuthorised, {
                 controller: jcs.modules.auth.controllers.login,
                 templateUrl: 'src/app/modules/auth/html/not-authorised.tmpl.html'
