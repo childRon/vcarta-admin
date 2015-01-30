@@ -1,10 +1,10 @@
 (function (angular, jcs) {
     'use strict';
 
-   angular.module(jcs.modules.purchase.name).factory(jcs.modules.purchase.factory.json, function ($q, $http, $cookies) {
+   angular.module(jcs.modules.purchase.name).factory(jcs.modules.purchase.factory.json, function ($q, $http, $cookieStore) {
         return {
             getPurchaseStuff: function (date_from,date_to,offset,limit) {
-                var sid = $cookies.token;
+                var sid = $cookieStore.get("token");
                 var pagingParams = '';
                 if(offset && limit){
                     pagingParams = ",offset:{3},limit:{4}".format(offset,limit);

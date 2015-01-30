@@ -2,10 +2,10 @@
     'use strict';
 
 
-    angular.module(jcs.modules.bonus.name).factory(jcs.modules.bonus.factory.json, function ($q, $http, $cookies, httpTransformer) {
+    angular.module(jcs.modules.bonus.name).factory(jcs.modules.bonus.factory.json, function ($q, $http, $cookieStore, httpTransformer) {
         return {
             getBonusStuff: function (offset, limit) {
-                var sid = $cookies.token;
+                var sid = $cookieStore.get("token");
                 var pagingParams = '';
                 var url = '';
                 if (offset && limit) {
@@ -27,7 +27,7 @@
                 return deferred.promise;
             },
             getBonusInfo: function (id) {
-                var sid = $cookies.token;
+                var sid = $cookieStore.get("token");
 
                 var url = 'api2/accounts/{0}.json?sid:{1}'.format(id, sid);
                 var deferred = $q.defer(),
@@ -42,7 +42,7 @@
                 return deferred.promise;
             },
             exchangeBonus: function (accountId, sum, targetCard) {
-                var sid = $cookies.token;
+                var sid = $cookieStore.get("token");
                 var dataRequest = "sid:{0},sum:{1},target_card:{2}".format(sid, sum, targetCard);
 
                 var request = $http({

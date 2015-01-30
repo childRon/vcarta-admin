@@ -11,10 +11,10 @@
         );
     }
 
-   angular.module(jcs.modules.profile.name).factory(jcs.modules.profile.factory.json, function ($q, $http, $cookies, httpTransformer) {
+   angular.module(jcs.modules.profile.name).factory(jcs.modules.profile.factory.json, function ($q, $http, $cookieStore, httpTransformer) {
         return {
             getProfile: function () {
-                var sid = $cookies.token;
+                var sid = $cookieStore.get("token");
                 var url = 'api2/session/user.json?sid:{0}'.format(sid);
 
                 var deferred = $q.defer(),
@@ -29,7 +29,7 @@
                 return deferred.promise;
             },
             save: function(profile){
-                var sid = $cookies.token;
+                var sid = $cookieStore.get("token");
                 var dataRequest = "sid:{0},firstname:{1},lastname:{2},patronymic:{3},mobile:{4}".format(sid, profile.firstname,
                     profile.lastname, profile.patronymic, profile.mobile, profile.email);
 

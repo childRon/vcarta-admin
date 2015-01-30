@@ -4,34 +4,46 @@
     angular.module(jcs.modules.auth.name).controller(jcs.modules.auth.controllers.login, [
         '$scope',
         '$location',
+        '$rootScope',
+        'eventbus',
         jcs.modules.auth.services.authentication,
-        function ($scope, $location, authentication) {
+        function ($scope, $location, $rootScope,eventbus, authentication) {
             $scope.loginModel = {};
             $scope.isBusy = false;
             $scope.invalidLogin = false;
 
 
             $scope.login = function () {
+                $rootScope.loading = true;
                 $scope.invalidLogin = false;
                 $scope.isBusy = true;
-                authentication.login($scope.loginModel.email, $scope.loginModel.password, $scope.loginModel.keepIn).then(function () {
-                    $location.path(jcs.modules.core.routes.home);
-                }, function () {
-                    $scope.invalidLogin = true;
-                })['finally'](function () {
-                    $scope.isBusy = false;
-                });
+                var callbackF = function(event, data){
+                    var data = data.data;
+                    if(data.errors){
+                        $scope.message = data.errors[0].message;
+                        $scope.success = false;
+                        $scope.error = true;
+
+                    }else{
+                        $scope.error = false;
+                        $scope.success = true;
+                        $location.path(jcs.modules.core.routes.home);
+                    }
+                    $rootScope.loading = false;
+//
+
+                }
+
+                eventbus.subscribe(jcs.modules.auth.events.userLoggedIn, callbackF)
+                authentication.login($scope.loginModel.email, $scope.loginModel.password, $scope.loginModel.keepIn);
             };
 
             $scope.logout = function () {
+                var callbackLogout = function(event, data){
 
-                authentication.logout().then(function () {
                     $location.path(jcs.modules.core.routes.home);
-                }, function () {
-
-                })['finally'](function () {
-                    $scope.isBusy = false;
-                });
+                }
+                authentication.logout();
             };
 
         }

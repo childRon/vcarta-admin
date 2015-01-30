@@ -8,8 +8,10 @@
         '$window',
         '$cookies',
         '$http',
+        '$rootScope',
+        '$cookieStore',
         jcs.modules.core.factory.httpTransformer,
-        function ($q, $timeout, eventbus, $window, $cookies, $http, transfromer) {
+        function ($q, $timeout, eventbus, $window, $cookies, $http, $rootScope, $cookieStore, transfromer) {
             var currentUser,
                 createUser = function (name, permissions) {
                     return {
@@ -18,7 +20,7 @@
                     };
                 },
                 login = function (cardId, password, keepIn) {
-                    var deferred = $q.defer();
+//                    var deferred = $q.defer();
                     // By default, the $http service will transform the outgoing request by
                     // serializing the data as JSON and then posting it with the content-
                     // type, "application/json". When we want to post the value as a FORM
@@ -32,38 +34,52 @@
                         transformRequest: transfromer,
                         data: loginDataString
                     });
-                    request.success(function (data, status, headers, config) {
-                            var sid = data.sid;
-                            if (sid) {
+                    request.then(function (response) {
+                        var data = response.data;
+                        var sid = data.sid;
+                        if (sid) {
 //                                if(keepIn){
-                                    $cookies.token = sid;
-                                    $cookies.user = angular.toJson(data);
-//                                }
-                                currentUser = data;
-                                eventbus.broadcast(jcs.modules.auth.events.userLoggedIn, currentUser);
-                                deferred.resolve(data);
-                            } else {
-                                deferred.reject('Unknown Username / Password combination');
-                                return;
-                            }
-                        }).
-                        error(function (data, status, headers, config) {
-                            deferred.reject(status);
-                        });
-                    return deferred.promise;
+//                            $cookies.token = sid;
+//                            $cookies.user = angular.toJson(data);
+                            $cookieStore.put("token", sid);
+                            $cookieStore.put("user", angular.toJson(data));
+                            currentUser = data;
+                            $rootScope.user = currentUser;
+                        }
+                        eventbus.broadcast(jcs.modules.auth.events.userLoggedIn, response);
+//                        deferred.resolve(response);
+
+                    }, function (error) {
+//                        deferred.reject(error);
+                        console.error(error);
+                    });
+//                    return deferred.promise;
                 },
 
                 logout = function () {
                     // we should only remove the current user.
                     // routing back to login login page is something we shouldn't
                     // do here as we are mixing responsibilities if we do.
-                    delete $cookies.token;
-                    delete $cookies.user;
+//                    $cookies.token = "false";
+//                    $cookies.user = "false";
+                    $cookieStore.remove('token');
+                    $cookieStore.remove('user');
+
+//                    delete $cookies.token;
+//                    delete $cookies.user;
                     currentUser = undefined;
+                    $rootScope.user = currentUser;
                     eventbus.broadcast(jcs.modules.auth.events.userLoggedOut);
                 },
                 getCurrentLoginUser = function () {
-                    return angular.fromJson($cookies.user);
+                    var user = $rootScope.user;
+                    if(user === undefined){
+                        user = angular.fromJson($cookies.user);
+                        if(user){
+                            $rootScope.user = user;
+                        }
+                    }
+                    return user;
                 };
 
             return {
