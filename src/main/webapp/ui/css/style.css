@@ -61,6 +61,10 @@ textarea {
 	vertical-align: middle;
 }
 
+.form-horizontal .control-label{
+    text-align:left !important;
+}
+
 .table-bordered th {
 	background: #E9E9E9;
 	background:-moz-linear-gradient(top, #FAFAFA 0%, #E9E9E9 100%); /* FF3.6+ */

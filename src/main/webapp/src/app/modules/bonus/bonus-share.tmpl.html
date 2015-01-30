@@ -10,7 +10,7 @@
 
                     <div class="widget-header">
                         <i class="icon-user"></i>
-                        <h3>Бренд: {{bonusInfo.brands[0]}}</h3>
+                        <h3>Бренд: {{bonusInfo.brands}}</h3>
                     </div> <!-- /widget-header -->
                     <div class="widget-content">
                         <h3>Всего бонусов: {{bonusInfo.bonus}} </h3>
@@ -19,9 +19,9 @@
                     <div class="widget-content">
 
 
-                        <form id="edit-profile" class="form-horizontal">
-                            <div class="alert alert-error">
-                                <strong>Error!</strong>This is a fatal error.
+                        <form id="edit-profile" class="form-horizontal" ng-show="!bonusShared">
+                            <div class="alert alert-error"  ng-show="error">
+                                <strong>{{message}}</strong>
                             </div>
                             <fieldset>
 
@@ -46,14 +46,29 @@
 
 
                             </fieldset>
-                        <!--    <div class="control-group">
-                                <div class="controls" >
-                                    <div class="span3">
-                                        <label class="control-label" for="brands-share">Брэнды</label>
-                                        <span id="brands-share"><p>EPAM</p></span>
-                                    </div>
-                                </div>
-                            </div>-->
+
+                        </form>
+                        <form class="form-inline" ng-show="bonusShared">
+                            <div class="alert alert-success">
+                                <strong>Бонусы успешно переданы!</strong>
+                            </div>
+                            <div class="control-group">
+                                <span ><label class="control-label" for="result-brands">Брэнды:  </label></span>
+                                <strong id="result-brands">{{shareBrands}}</strong>
+                            </div>
+                            <div class="control-group">
+                                <span ><label class="control-label" for="result-card-for">Карта-получатель:  </label></span>
+                                <strong id="result-card-for">{{shareCardFor}}</strong>
+                            </div>
+                            <div class="control-group">
+                                <span ><label class="control-label" for="result-bonuses-for">Бонусов у получателя:  </label></span>
+                                <strong id="result-bonuses-for">было {{bonusForBefore}}, стало {{bonusForAfter}}</strong>
+                            </div>
+                            <div class="control-group">
+                                <span ><label class="control-label" for="result-card-mine">Мои бонусы	было:  </label></span>
+                                <strong id="result-card-mine">было {{bonusMineBefore}}, стало {{bonusMineAfter}}</strong>
+                            </div>
+                            <button type="submit" class="btn btn-primary" ng-click="turnBack()">Вернуть назад</button>
                         </form>
 
 
