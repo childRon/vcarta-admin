@@ -5,10 +5,16 @@ angular.module(jcs.modules.auth.name).run([
     '$rootScope',
     '$location',
     jcs.modules.auth.services.authorization,
-    function ($rootScope, $location, authorization) {
+    '$templateCache',
+    function ($rootScope, $location, authorization,  $templateCache) {
         var routeChangeRequiredAfterLogin = false,
             loginRedirectUrl;
+
         $rootScope.$on('$routeChangeStart', function (event, next) {
+            if (typeof(current) !== 'undefined'){
+                $templateCache.remove(current.templateUrl);
+            }
+
             var authorised;
            if (routeChangeRequiredAfterLogin && next.originalPath !== jcs.modules.auth.routes.login) {
                 routeChangeRequiredAfterLogin = false;

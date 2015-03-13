@@ -10,8 +10,9 @@
         '$http',
         '$rootScope',
         '$cookieStore',
+        '$templateCache',
         jcs.modules.core.factory.httpTransformer,
-        function ($q, $timeout, eventbus, $window, $cookies, $http, $rootScope, $cookieStore, transfromer) {
+        function ($q, $timeout, eventbus, $window, $cookies, $http, $rootScope, $cookieStore, $templateCache, transfromer) {
             var currentUser,
                 createUser = function (name, permissions) {
                     return {

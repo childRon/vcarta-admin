@@ -1,7 +1,12 @@
 1. session.json
-curl -verbose -X POST -d "type:card,login:2500650006387,password:8415" http://cabinet.vartacarta.by/api2/session.json
 
-2. look-session.json
+curl -verbose -X POST -d "type:card,login:2500650006387,password:8415" http://profile.vartacarta.by/api2/session.json
+
+curl -verbose -X PUT -d "sid:633a057bc27386226da7,email:victar.misantest@gmail.com" http://cabinet.vartacarta.by/api2/session/user
+curl -verbose -X PUT -d "sid:e99192c870994add2733,lastname:victar" http://profile.vartacarta.by/api2/session/user
+
+
+2. look-session.json e99192c870994add2733
 curl http://cabinet.vartacarta.by/api2/session.json?sid:b631aec961d7b471489f
 
 3. close-session.json
