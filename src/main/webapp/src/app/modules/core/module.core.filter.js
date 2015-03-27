@@ -1,7 +1,7 @@
 (function (angular, jcs) {
     'use strict';
 
-    angular.module(jcs.modules.bonus.name).filter(jcs.modules.bonus.filter.removeZeros,
+    angular.module(jcs.modules.core.name).filter(jcs.modules.core.filter.removeZeros,
         ['$locale', '$filter',
             function ($locale, $filter) {
                 var numberFilter = $filter('number');

@@ -16,9 +16,6 @@
         },
         directive: {
             dateInput: "dateInput"
-        },
-        filter: {
-            removeZeros : "removeZeros"
         }
     };
 

@@ -52,7 +52,7 @@
                             <tbody>
                             <tr ng-repeat="row in displayedCollection">
                                 <td ng-repeat="col in columns">
-                                    <div ng-if="col == 'discount' || col == 'bonus' || col == 'final_sum' || col = 'payment' ">
+                                    <div ng-if="col == 'discount' || col == 'bonus' || col == 'final_sum' || col == 'payment' ">
                                         <div ng-if="col == 'payment'">
                                             {{row['discount'] + row['final_sum']  | removeZeros}}
                                         </div>
@@ -60,7 +60,7 @@
                                             {{row[col] | removeZeros}}
                                         </div>
                                     </div>
-                                    <div ng-if="col != 'discount' && col != 'bonus' && col != 'final_sum' && col != 'payment' ">
+                                    <div ng-if="col != 'discount' && col != 'bonus' && col != 'final_sum' && col != 'payment'">
                                         {{row[col]}}
                                     </div>
                                 </td>

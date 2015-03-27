@@ -43,7 +43,8 @@
             },
             exchangeBonus: function (accountId, sum, targetCard) {
                 var sid = $cookieStore.get("token");
-                var dataRequest = "sid:{0},sum:{1},target_card:{2}".format(sid, sum, targetCard);
+                //fix for zeros issue
+                var dataRequest = "sid:{0},sum:{1},target_card:{2}".format(sid, sum*100, targetCard);
 
                 var request = $http({
                     method: "put",

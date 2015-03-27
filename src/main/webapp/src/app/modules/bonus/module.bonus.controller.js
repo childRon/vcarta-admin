@@ -88,6 +88,7 @@
                                 $scope.bonusForAfter = data.target_account.sum_after;
                                 $scope.bonusMineBefore = data.source_account.sum_before;
                                 $scope.bonusMineAfter = data.source_account.sum_after;
+                                $scope.bonusInfo.bonus = $scope.bonusMineAfter;
 
                                 $scope.error = false;
                             }

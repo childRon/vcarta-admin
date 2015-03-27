@@ -17,7 +17,8 @@
             httpTransformer: "httpTransformer"
         },
         filter:{
-            format: 'format'
+            format: 'format',
+            removeZeros : "removeZeros"
         }
     };
 
