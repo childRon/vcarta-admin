@@ -24,8 +24,8 @@
                 $scope.dataObj = {};
                 $scope.sum = 0;
                 $scope.count = 0;
-                $scope.columns = ['created_at', 'point', 'discount', 'bonus', 'final_sum'];
-                $scope.columnNames = ['Дата', 'Место', 'Сумма покупки', 'Сумма скидки', 'Итоговая сумма покупки'];
+                $scope.columns = ['created_at', 'point', 'payment', 'discount', 'final_sum', 'bonus'];
+                $scope.columnNames = ['Дата', 'Место', 'Сумма покупки', 'Сумма скидки', 'Итоговая сумма покупки', 'Начислено бонусов'];
 
 
 

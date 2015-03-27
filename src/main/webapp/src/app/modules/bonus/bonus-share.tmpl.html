@@ -62,11 +62,11 @@
                             </div>
                             <div class="control-group">
                                 <span ><label class="control-label" for="result-bonuses-for">Бонусов у получателя:  </label></span>
-                                <strong id="result-bonuses-for">было {{bonusForBefore | number}}, стало {{bonusForAfter | number}}</strong>
+                                <strong id="result-bonuses-for">было {{bonusForBefore | removeZeros}}, стало {{bonusForAfter | removeZeros}}</strong>
                             </div>
                             <div class="control-group">
                                 <span ><label class="control-label" for="result-card-mine">Мои бонусы	было:  </label></span>
-                                <strong id="result-card-mine">было {{bonusMineBefore | number}}, стало {{bonusMineAfter | number}}</strong>
+                                <strong id="result-card-mine">было {{bonusMineBefore | removeZeros}}, стало {{bonusMineAfter | removeZeros}}</strong>
                             </div>
                             <button type="submit" class="btn btn-primary" ng-click="turnBack()">Передать бонусы еще раз</button>
                         </form>

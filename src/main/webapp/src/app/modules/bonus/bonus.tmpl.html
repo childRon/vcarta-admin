@@ -22,7 +22,7 @@
                             <tr ng-repeat="row in displayedCollection">
                                 <td ng-repeat="col in columns">
                                     <div ng-if="col == 'bonus' || col == 'total_sum' ">
-                                        {{row[col] | number}}
+                                        {{row[col] | removeZeros}}
                                     </div>
                                     <div ng-if="col != 'bonus' && col != 'total_sum' ">
                                         {{row[col]}}
