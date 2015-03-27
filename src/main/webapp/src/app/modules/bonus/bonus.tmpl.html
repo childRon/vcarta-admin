@@ -20,7 +20,15 @@
                             </thead>
                             <tbody>
                             <tr ng-repeat="row in displayedCollection">
-                                <td ng-repeat="col in columns">{{row[col]}}</td>
+                                <td ng-repeat="col in columns">
+                                    <div ng-if="col == 'bonus' || col == 'total_sum' ">
+                                        {{row[col] | number}}
+                                    </div>
+                                    <div ng-if="col != 'bonus' && col != 'total_sum' ">
+                                        {{row[col]}}
+                                    </div>
+
+                                </td>
                                 <td class="td-actions"><a href="javascript:;" ng-click="locateToSharePage({{row['id']}})" class="btn btn-success"><i class="btn-icon-only icon-hand-right"></i></a></td>
                             </tr>
                             </tbody>

@@ -53,7 +53,7 @@
                                 <strong>Бонусы успешно переданы!</strong>
                             </div>
                             <div class="control-group">
-                                <span ><label class="control-label" for="result-brands">Брэнды:  </label></span>
+                                <span ><label class="control-label" for="result-brands">Брэнд:  </label></span>
                                 <strong id="result-brands">{{shareBrands}}</strong>
                             </div>
                             <div class="control-group">
@@ -62,13 +62,13 @@
                             </div>
                             <div class="control-group">
                                 <span ><label class="control-label" for="result-bonuses-for">Бонусов у получателя:  </label></span>
-                                <strong id="result-bonuses-for">было {{bonusForBefore}}, стало {{bonusForAfter}}</strong>
+                                <strong id="result-bonuses-for">было {{bonusForBefore | number}}, стало {{bonusForAfter | number}}</strong>
                             </div>
                             <div class="control-group">
                                 <span ><label class="control-label" for="result-card-mine">Мои бонусы	было:  </label></span>
-                                <strong id="result-card-mine">было {{bonusMineBefore}}, стало {{bonusMineAfter}}</strong>
+                                <strong id="result-card-mine">было {{bonusMineBefore | number}}, стало {{bonusMineAfter | number}}</strong>
                             </div>
-                            <button type="submit" class="btn btn-primary" ng-click="turnBack()">Вернуть назад</button>
+                            <button type="submit" class="btn btn-primary" ng-click="turnBack()">Передать бонусы еще раз</button>
                         </form>
 
 

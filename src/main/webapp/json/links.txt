@@ -35,3 +35,16 @@ curl http://cabinet.vartacarta.by/api2/accounts/1006466.json?sid:e1d5dad2b294a5f
 10. bonus-exchange.json  (to collect json )?? 
 curl -X PUT -d "sid:e1d5dad2b294a5f1c433,sum:2500,target_card:140000005756"http://cabinet.vartacarta.by/api2/accounts/1006466/accounts/1006466.json
 
+
+
+ЦО:
+Логин: 2500650006387
+Пароль: 8415
+
+КристалКомпани:
+Логин: 2500650002747
+Пароль: 1340
+
+Винт:
+Логин: 2500650039804
+Пароль: 8402
