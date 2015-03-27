@@ -31,7 +31,6 @@
                     }
                     $rootScope.loading = false;
 //
-
                 }
 
                 eventbus.subscribe(jcs.modules.auth.events.userLoggedIn, callbackF)
@@ -40,9 +39,10 @@
 
             $scope.logout = function () {
                 var callbackLogout = function(event, data){
-
-                    $location.path(jcs.modules.core.routes.home);
+                    $location.path(jcs.modules.auth.routes.login);
                 }
+                eventbus.subscribe(jcs.modules.auth.events.userLoggedOut, callbackLogout)
+
                 authentication.logout();
             };
 

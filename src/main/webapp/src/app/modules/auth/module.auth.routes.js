@@ -10,7 +10,10 @@
             });
             $routeProvider.when(jcs.modules.auth.routes.logout, {
                 controller: jcs.modules.auth.controllers.login,
-                templateUrl: 'src/app/modules/auth/html/login.tmpl.html'
+                templateUrl: 'src/app/modules/auth/html/login.tmpl.html',
+                access: {
+                    loginRequired: true
+                }
             });
             $routeProvider.when(jcs.modules.auth.routes.notAuthorised, {
                 controller: jcs.modules.auth.controllers.login,
